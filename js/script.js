@@ -1,3 +1,4 @@
+/*jshint esnext: true */
 /* Задания на урок:
 
 1) Удалить все рекламные блоки со страницы (правая часть сайта)
@@ -24,3 +25,27 @@ const movieDB = {
     ]
 };
 
+let promo = document.querySelectorAll('.promo__adv img'),
+    promoGenre = document.querySelector('.promo__genre'),
+    promoBG = document.querySelector('.promo__bg'),
+    movieList = document.querySelector('.promo__interactive-list');
+
+promo.forEach(item => {
+  item.remove();
+});
+
+promoGenre.textContent = 'Драма';
+
+promoBG.style.backgroundImage = 'url("img/bg.jpg")';
+
+movieList.innerHTML = '';
+
+movieDB.movies.sort();
+
+movieDB.movies.forEach((film, i) => {
+  movieList.innerHTML += ` 
+    <li class="promo__interactive-item">${i + 1} ${film}
+      <div class="delete"></div>
+    </li>
+    `;
+});
